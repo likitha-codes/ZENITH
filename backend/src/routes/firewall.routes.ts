@@ -9,6 +9,7 @@ import { askFeatherless } from "../services/featherless";
 import { guardOutput } from "../services/outputGuard";
 import { createAuditLog } from "../services/auditLogger";
 import { AuditLogModel } from "../models/auditLog";
+
 const router = Router();
 
 router.post("/analyze", async (req, res) => {
@@ -31,6 +32,16 @@ router.post("/analyze", async (req, res) => {
   );
 
   if (blocked) {
+    const auditLog = createAuditLog(
+      taskAnalysis.task,
+      detectedEntities.map((entity) => entity.type),
+      policyDecisions.map((decision) => decision.action),
+      true,
+      false
+    );
+
+    await AuditLogModel.create(auditLog);
+
     return res.status(403).json({
       error: "Request blocked by ZENITH privacy policy",
       policyDecisions,
@@ -58,15 +69,19 @@ router.post("/analyze", async (req, res) => {
   );
 
   const aiResponse = await askFeatherless(transformedPrompt);
+
   const guardedResponse = guardOutput(aiResponse);
+
   const auditLog = createAuditLog(
-  taskAnalysis.task,
-  detectedEntities.map((entity) => entity.type),
-  policyDecisions.map((decision) => decision.action),
-  false,
-  guardedResponse.safe
-);
-await AuditLogModel.create(auditLog);
+    taskAnalysis.task,
+    detectedEntities.map((entity) => entity.type),
+    policyDecisions.map((decision) => decision.action),
+    false,
+    guardedResponse.safe
+  );
+
+  await AuditLogModel.create(auditLog);
+
   res.json({
     received: prompt,
     detectedEntities,
