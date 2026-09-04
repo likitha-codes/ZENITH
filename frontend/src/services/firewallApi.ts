@@ -1,21 +1,41 @@
-import { mockDetectedItems } from "../data/mockChat";
-import type { DetectedItem } from "../types";
+import type { DetectedItem, TransformationAction } from "../types";
 
 export interface FirewallResponse {
   success: boolean;
   sanitizedData: string;
   detectedItems: DetectedItem[];
+  aiResponse?: {
+    safe: boolean;
+    response: string;
+  };
+}
+
+interface BackendEntity {
+  type: string;
+  value: string;
+}
+
+interface BackendPolicyDecision {
+  entityType: string;
+  action: TransformationAction;
+}
+
+interface BackendResponse {
+  transformedPrompt: string;
+  detectedEntities: BackendEntity[];
+  policyDecisions: BackendPolicyDecision[];
+  aiResponse?: {
+    safe: boolean;
+    response: string;
+  };
 }
 
 export async function processFirewallRequest(
   input: string
 ): Promise<FirewallResponse> {
-  /*
-    BACKEND INTEGRATION POINT
-
-    Replace the mock delay and response below with:
-
-    const response = await fetch("YOUR_BACKEND_URL", {
+  const response = await fetch(
+    "http://localhost:5000/api/firewall/analyze",
+    {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,21 +43,42 @@ export async function processFirewallRequest(
       body: JSON.stringify({
         prompt: input,
       }),
-    });
+    }
+  );
 
-    return response.json();
-  */
+  if (!response.ok) {
+    throw new Error("ZENITH backend request failed");
+  }
 
-  await new Promise((resolve) => setTimeout(resolve, 1800));
+  const data: BackendResponse = await response.json();
+
+  const detectedItems: DetectedItem[] = data.detectedEntities.map(
+    (entity, index) => {
+      const decision = data.policyDecisions.find(
+        (item) => item.entityType === entity.type
+      );
+
+      const action = decision?.action ?? "KEEP";
+
+      return {
+        id: `${entity.type}-${index}`,
+        label: entity.type,
+        original: entity.value,
+        action,
+        transformed: entity.value,
+      };
+    }
+  );
 
   return {
     success: true,
-    sanitizedData: input
-      .replace(/\b\d{10}\b/g, "**********")
-      .replace(
-        /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi,
-        "[MASKED_EMAIL]"
-      ),
-    detectedItems: mockDetectedItems,
+    sanitizedData: data.transformedPrompt,
+    detectedItems,
+    aiResponse: data.aiResponse
+      ? {
+          safe: data.aiResponse.safe,
+          response: data.aiResponse.response,
+        }
+      : undefined,
   };
 }
