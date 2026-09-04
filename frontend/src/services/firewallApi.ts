@@ -47,8 +47,12 @@ export async function processFirewallRequest(
   );
 
   if (!response.ok) {
-    throw new Error("ZENITH backend request failed");
-  }
+  const errorData = await response.json().catch(() => null);
+
+  throw new Error(
+    errorData?.error ?? "ZENITH backend request failed"
+  );
+}
 
   const data: BackendResponse = await response.json();
 

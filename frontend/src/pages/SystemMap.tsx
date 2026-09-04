@@ -15,16 +15,47 @@ export default function SystemMap() {
       <section className="relative flex min-h-screen items-center justify-center">
         <ConnectionLines />
 
-        <div className="absolute left-[51%] top-[51%] z-10 -translate-x-1/2 -translate-y-1/2">
+        {/* ZENITH CORE */}
+        <div className="absolute left-[50%] top-[52%] z-10 -translate-x-1/2 -translate-y-1/2">
           <FirewallCore />
         </div>
 
-        <AgentNode agent={agents[0]} x="21%" y="29%" />
-        <AgentNode agent={agents[1]} x="76%" y="24%" />
-        <AgentNode agent={agents[2]} x="18%" y="69%" />
-        <AgentNode agent={agents[3]} x="79%" y="61%" />
-        <AgentNode agent={agents[4]} x="56%" y="85%" />
+        {/* SENSITIVE DATA DETECTOR */}
+        <AgentNode
+          agent={agents[0]}
+          x="18%"
+          y="58%"
+        />
 
+        {/* TASK UNDERSTANDING */}
+        <AgentNode
+          agent={agents[1]}
+          x="60%"
+          y="25%"
+        />
+
+        {/* DETERMINISTIC POLICY ENGINE */}
+        <AgentNode
+          agent={agents[2]}
+          x="28%"
+          y="76%"
+        />
+
+        {/* TRANSFORMATION ENGINE */}
+        <AgentNode
+          agent={agents[3]}
+          x="76%"
+          y="46%"
+        />
+
+        {/* OUTPUT GUARD */}
+        <AgentNode
+          agent={agents[4]}
+          x="50%"
+          y="76%"
+        />
+
+        {/* LIVE AGENT EXECUTION STREAM */}
         <div className="absolute bottom-28 left-12 max-w-xs max-md:hidden">
           <p className="text-[8px] tracking-[0.15em] text-slate-600">
             LIVE AGENT EXECUTION STREAM
@@ -37,6 +68,7 @@ export default function SystemMap() {
           </div>
         </div>
 
+        {/* REALTIME FIREWALL PERFORMANCE */}
         <div className="absolute bottom-28 right-12 text-right max-md:hidden">
           <p className="text-[8px] tracking-[0.15em] text-slate-600">
             REALTIME FIREWALL PERFORMANCE

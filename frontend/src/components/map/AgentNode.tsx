@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
+
 import type { Agent } from "../../types";
+
 import AgentIcon from "../agent/AgentIcon";
 
 interface AgentNodeProps {
@@ -33,15 +35,23 @@ export default function AgentNode({
           }`}
           style={{
             color: agent.accent,
-            borderColor: `${agent.accent}99`,
-            backgroundColor: `rgba(${agent.accentRgb}, 0.08)`,
-            boxShadow: `0 0 22px rgba(${agent.accentRgb}, 0.16)`,
+            borderColor: `${agent.accent}CC`,
+            backgroundColor: `rgba(${agent.accentRgb}, 0.035)`,
+
+            boxShadow: `
+              0 0 6px rgba(${agent.accentRgb}, 0.55),
+              0 0 14px rgba(${agent.accentRgb}, 0.22)
+            `,
           }}
         >
+          {/* Hover ring */}
           <span
-            className="absolute -inset-1.75 rounded-full border opacity-0 transition group-hover:opacity-100"
+            className="absolute -inset-1.5 rounded-full border opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             style={{
-              borderColor: `${agent.accent}55`,
+              borderColor: `${agent.accent}70`,
+              boxShadow: `
+                0 0 7px rgba(${agent.accentRgb}, 0.35)
+              `,
             }}
           />
 
@@ -53,6 +63,9 @@ export default function AgentNode({
             className="text-[9px] font-semibold tracking-[0.12em]"
             style={{
               color: agent.accent,
+              textShadow: `
+                0 0 5px rgba(${agent.accentRgb}, 0.45)
+              `,
             }}
           >
             {agent.title.toUpperCase()}
