@@ -34,7 +34,7 @@ export async function processFirewallRequest(
   input: string
 ): Promise<FirewallResponse> {
   const response = await fetch(
-    "http://localhost:5000/api/firewall/analyze",
+    "https://zenith-q1rx.onrender.com/api/firewall/analyze",
     {
       method: "POST",
       headers: {
