@@ -6,7 +6,6 @@ import app from "./app";
 import { connectDatabase } from "./config/database";
 
 dns.setDefaultResultOrder("ipv4first");
-dns.setServers(["8.8.8.8"]);
 
 dotenv.config();
 
