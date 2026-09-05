@@ -10,7 +10,7 @@ ZENITH also protects the AI output from leaking sensitive information and mainta
 
 ---
 
-## 🚀 The Problem
+## The Problem
 
 Organizations increasingly use external AI models for:
 
@@ -63,7 +63,7 @@ That is the fundamental difference.
 
 ---
 
-## 💡 Our Solution
+## Our Solution
 
 ZENITH places a privacy firewall between an organization's application and an external AI model.
 
@@ -106,7 +106,7 @@ ZENITH ensures that an external AI receives only the information required for th
 
 ---
 
-## 🎯 Core Principle
+## Core Principle
 
 > **AI for understanding. Deterministic rules for enforcement.**
 
@@ -140,7 +140,7 @@ Final Security Decision
 
 ---
 
-## 🔥 Key Innovation — Task-Aware Data Minimization
+## Key Innovation — Task-Aware Data Minimization
 
 ZENITH does not use a simple rule such as:
 
@@ -178,7 +178,7 @@ This makes ZENITH context-aware rather than simply PII-aware.
 
 ---
 
-## 🛡️ Complete ZENITH Workflow
+## Complete ZENITH Workflow
 
 ZENITH processes requests through the following pipeline.
 
@@ -305,7 +305,7 @@ Raw sensitive values are **not** stored in the audit record.
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 \`\`\`
                          ┌──────────────────────┐
@@ -364,7 +364,7 @@ Raw sensitive values are **not** stored in the audit record.
 
 ---
 
-## 🔐 Security Decision Model
+## Security Decision Model
 
 The current deterministic policy behavior includes:
 
@@ -381,7 +381,7 @@ The policy engine ensures that the final security decision does not depend solel
 
 ---
 
-## 🔄 Transformation Actions
+## Transformation Actions
 
 ### KEEP
 The information is required and permitted to remain unchanged.
@@ -430,7 +430,7 @@ Output: PAN → BLOCK
 
 ---
 
-## 🤖 AI Integration
+## AI Integration
 
 ZENITH integrates with **Featherless AI** for model interaction.
 
@@ -445,7 +445,7 @@ The AI does **not** have unrestricted authority over the security policy.
 
 ---
 
-## ⚙️ Why Deterministic Security Matters
+## Why Deterministic Security Matters
 
 Consider a request containing:
 
@@ -473,7 +473,7 @@ This makes the security boundary predictable.
 
 ---
 
-## 🚨 Prompt Injection Protection
+## Prompt Injection Protection
 
 ZENITH is designed to maintain its deterministic privacy policies even when a request attempts to override them.
 
@@ -498,7 +498,7 @@ The request is rejected before the sensitive information is passed to the extern
 
 ---
 
-## 🏦 Banking Demo
+## Banking Demo
 
 A primary demonstration scenario is a banking organization.
 
@@ -534,7 +534,7 @@ Instead of forwarding the entire customer profile, ZENITH minimizes the context 
 
 ---
 
-## 🚫 PAN Blocking Demo
+## PAN Blocking Demo
 
 **Request:**
 
@@ -554,7 +554,7 @@ The external AI does not receive the blocked request. The security event is reco
 
 ---
 
-## 🛡️ Output Leakage Demo
+## Output Leakage Demo
 
 ZENITH also protects against sensitive information appearing in an AI response.
 
@@ -580,7 +580,7 @@ is returned instead of the potentially unsafe response.
 
 ---
 
-## 📊 Dashboard
+## Dashboard
 
 ZENITH includes an organizational security interface rather than presenting itself as a conventional consumer chatbot.
 
@@ -601,7 +601,7 @@ The dashboard is designed to make the privacy firewall's decisions visible durin
 
 ---
 
-## 🗂️ Project Structure
+## Project Structure
 
 \`\`\`
 ZENITH/
@@ -663,7 +663,7 @@ ZENITH/
 
 ---
 
-## 🧩 Backend Components
+## Backend Components
 
 | File | Description |
 |---|---|
@@ -679,7 +679,7 @@ ZENITH/
 
 ---
 
-## 🖥️ Frontend Components
+## Frontend Components
 
 The frontend is built with **React**, **TypeScript** and **Vite**.
 
@@ -692,7 +692,7 @@ Major sections include:
 
 ---
 
-## 🔌 API
+## API
 
 ### Analyze Request
 
@@ -732,7 +732,7 @@ The response contains an error indicating that the request was blocked by the ZE
 
 ---
 
-## 🧪 Running the Project Locally
+## Running the Project Locally
 
 ### Requirements
 
@@ -788,7 +788,7 @@ http://localhost:5173
 
 ---
 
-## 🔑 Environment Variables
+## Environment Variables
 
 The following backend environment variables are required:
 
@@ -803,7 +803,7 @@ FEATHERLESS_MODEL=your_model_name
 
 ---
 
-## ☁️ Deployment
+## Deployment
 
 ZENITH uses a monorepo deployment architecture.
 
@@ -852,7 +852,7 @@ Required environment variables are configured in Render.
 
 ---
 
-## 🔒 MongoDB Network Security
+## MongoDB Network Security
 
 The backend uses MongoDB Atlas for audit metadata.
 
@@ -860,7 +860,7 @@ When deploying the backend to Render, the Render service's outbound IP ranges mu
 
 ---
 
-## 📈 Privacy vs Utility
+## Privacy vs Utility
 
 A privacy system should not simply remove as much information as possible. If too much information is removed, the AI may no longer be able to perform the requested task effectively.
 
@@ -890,7 +890,7 @@ Potential evaluation metrics include:
 
 ---
 
-## 📋 Security & Evaluation Scenarios
+## Security & Evaluation Scenarios
 
 ZENITH can be evaluated using several request types.
 
@@ -991,7 +991,7 @@ Response Blocked
 
 ---
 
-## 🧠 Design Philosophy
+## Design Philosophy
 
 ZENITH is based on five major principles.
 
@@ -1003,7 +1003,7 @@ ZENITH is based on five major principles.
 
 ---
 
-## 🚫 Current MVP Scope
+## Current MVP Scope
 
 ZENITH intentionally focuses on a practical MVP.
 
@@ -1026,7 +1026,7 @@ Implemented capabilities include:
 
 ---
 
-## ⚠️ Limitations
+## Limitations
 
 The current MVP does not attempt to implement every enterprise AI security feature.
 
@@ -1044,7 +1044,7 @@ The current sensitive-data detector also focuses on a defined set of entity type
 
 ---
 
-## 🔮 Future Scope
+## Future Scope
 
 ### Expanded Sensitive Data Detection
 
@@ -1114,7 +1114,7 @@ This would allow ZENITH to optimize the privacy/utility tradeoff.
 
 ---
 
-## 🌍 Why ZENITH?
+## Why ZENITH?
 
 Traditional privacy systems ask:
 
@@ -1130,7 +1130,7 @@ ZENITH exists to prevent the other 90 pieces from unnecessarily crossing the org
 
 ---
 
-## 🏆 USP
+## USP
 
 **Traditional approach**
 
@@ -1165,15 +1165,15 @@ The core difference is **task-aware privacy enforcement**.
 
 ---
 
-## 🎤 One-Line Pitch
+## One-Line Pitch
 
 > ZENITH is an AI Privacy Firewall that gives AI only the data it needs for the task — not all the data the organization has.
 
-## 🎤 30-Second Explanation
+## 30-Second Explanation
 
 Organizations often have far more data than an AI model needs. Sending the entire context to an external AI creates unnecessary privacy exposure. ZENITH sits between the organization and the AI, detects sensitive information, understands the user's task, determines which data is actually necessary, and applies deterministic policies to remove, mask, generalize, derive, keep, or block information. It also checks the AI's output for sensitive data and maintains a privacy-safe audit trail. The result is useful AI with significantly less unnecessary data exposure.
 
-## 🎤 Key Technical Explanation
+## Key Technical Explanation
 
 > AI decides what the user is trying to do; our deterministic policy engine decides what data is allowed to reach the AI.
 
@@ -1182,7 +1182,7 @@ This separation is the core security principle of ZENITH.
 ---
 
 
-## 📌 Project Status
+## Project Status
 
 | Component | Status |
 |---|---|
@@ -1203,7 +1203,7 @@ This separation is the core security principle of ZENITH.
 
 ---
 
-## 🔐 Security Reminder
+## Security Reminder
 
 ZENITH is a hackathon MVP and should not be treated as a complete enterprise security or compliance solution without further validation.
 
@@ -1211,7 +1211,7 @@ Real-world deployment would require additional security testing, threat modeling
 
 ---
 
-## 📜 License
+## License
 
 This project is currently developed as a hackathon project.
 
@@ -1219,7 +1219,7 @@ Add the appropriate license here if the project is later released under an open-
 
 ---
 
-## ⭐ Final Thought
+## Final Thought
 
 AI adoption should not require organizations to expose everything they know.
 
